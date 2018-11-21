@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<title></title>
+
+	<!-- Link to bootstrap CDN -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Welcome</a>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li><a class="nav-link" href="{% url 'AppOne:index' %}">Home</a></li>
+				<li><a class="nav-link" href="{% url 'admin:index' %}">Admin</a></li>
+				<li><a class="nav-link" href="{% url 'AppOne:register' %}">Register</a></li>
+			</ul>
+
+			<!-- Login field on right side of page -->
+			<ul class="navbar-nav ml-auto">
+				{% if user.is_authenticated %}
+					<li><a class="nav-link" href="{% url 'user_logout' %}">Logout</a></li>
+				{% else %}
+					<li><a class="nav-link" href="{% url 'AppOne:user_login' %}">Login</a></li>
+				{% endif %}
+			</ul>
+
+		</div>
+	</nav>
+
+	<div class="container">
+		{% block body_block %}
+		{% endblock %}
+	</div>
+
+</body>
+</html>
